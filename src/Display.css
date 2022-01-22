@@ -1,0 +1,10 @@
+.display-container {
+  justify-content: center;
+  background: #9b9292;
+  border-radius: 10px;
+  margin-right: 150px;
+}
+
+.letters-container {
+  display: flex;
+}

@@ -12,6 +12,7 @@ const UserInput = () => {
     event.preventDefault();
     dispatch({ type: "SUBMIT", value: input.split("") });
     setInput("");
+    console.log(state.entered);
   };
 
   return (
