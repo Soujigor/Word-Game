@@ -5,8 +5,8 @@ const WrongLetters = () => {
   const { state } = WordState();
   return (
     <div>
-      {state.wrongLetters.map((letter) => (
-        <h2>{letter}</h2>
+      {state.wrongLetters.map((letter, index) => (
+        <h2 key={index}>{letter}</h2>
       ))}
     </div>
   );

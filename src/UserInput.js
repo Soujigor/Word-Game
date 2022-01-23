@@ -17,7 +17,7 @@ const UserInput = () => {
 
   return (
     <form onSubmit={submitFormHandler}>
-      <input value={input} onChange={inputChangeHandler}></input>
+      <input maxLength={5} value={input} onChange={inputChangeHandler}></input>
       <button>Test</button>
     </form>
   );

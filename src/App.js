@@ -16,7 +16,7 @@ function App() {
       const data = await response.json();
 
       const fiveLengthWords = data.filter((word) => word.length === 5);
-      dispatch({ type: "LOADING", value: fiveLengthWords[7786].split("") });
+      dispatch({ type: "LOADING", value: fiveLengthWords[948].split("") });
     }
     fetchProducts();
   }, []);
@@ -53,7 +53,7 @@ function App() {
       <Display />
       <UserInput />
       <WordDefinition word={word} />
-      {/* <WrongLetters /> */}
+      <WrongLetters />
     </div>
   );
 }
