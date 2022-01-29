@@ -1,3 +1,4 @@
+import { WORDS } from "./Constant";
 export const wordReducer = (state, action) => {
   if (action.type === "SUBMIT") {
     const newWrongLetters = action.value.filter(
@@ -22,9 +23,9 @@ export const wordReducer = (state, action) => {
 
   if (action.type === "NEXT") {
     return {
-      isPlaying: true,
+      display: [],
       entered: [],
-      rightAns: [],
+      rightAns: WORDS[Math.floor(Math.random() * (2315 + 1))].split(""),
       wrongLetters: [],
     };
   }

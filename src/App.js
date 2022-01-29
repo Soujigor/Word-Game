@@ -5,20 +5,16 @@ import UserInput from "./UserInput";
 import { WordState } from "./Context";
 import WrongLetters from "./WrongLetters";
 import WordDefinition from "./WordDefinition";
+import { WORDS } from "./Constant";
 
 function App() {
   const { state, dispatch } = WordState();
   const [word, setWord] = useState([]);
 
-  useEffect(() => {
-    async function fetchProducts() {
-      const response = await fetch("https://random-word-api.herokuapp.com/all");
-      const data = await response.json();
+  const randomWord = WORDS[Math.floor(Math.random() * (2315 + 1))];
 
-      const fiveLengthWords = data.filter((word) => word.length === 5);
-      dispatch({ type: "LOADING", value: fiveLengthWords[169].split("") });
-    }
-    fetchProducts();
+  useEffect(() => {
+    dispatch({ type: "LOADING", value: randomWord.split("") });
   }, []);
 
   useEffect(() => {

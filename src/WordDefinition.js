@@ -2,8 +2,7 @@ import React from "react";
 import { WordState } from "./Context";
 
 const WordDefinition = (props) => {
-  const { state, dispatch } = WordState();
-
+  const { dispatch } = WordState();
   return (
     <div>
       <h1>{props.word[0]?.name} </h1>
