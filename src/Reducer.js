@@ -1,3 +1,4 @@
+import { WORDS } from "./Constant";
 export const wordReducer = (state, action) => {
   if (action.type === "SUBMIT") {
     const newWrongLetters = action.value.filter(
@@ -12,5 +13,14 @@ export const wordReducer = (state, action) => {
   }
   if (action.type === "LOADING") {
     return { ...state, rightAns: action.value };
+  }
+
+  if (action.type === "NEXT") {
+    return {
+      display: [],
+      entered: [],
+      rightAns: WORDS[Math.floor(Math.random() * (2315 + 1))].split(""),
+      wrongLetters: [],
+    };
   }
 };
