@@ -16,7 +16,7 @@ function App() {
       const data = await response.json();
 
       const fiveLengthWords = data.filter((word) => word.length === 5);
-      dispatch({ type: "LOADING", value: fiveLengthWords[948].split("") });
+      dispatch({ type: "LOADING", value: fiveLengthWords[169].split("") });
     }
     fetchProducts();
   }, []);
@@ -33,9 +33,10 @@ function App() {
           name: word.word,
           meaning: word.meanings[0].definitions[0]?.definition,
           example: word.meanings[0].definitions[0]?.example,
+          synonyms: true,
         };
       });
-      console.log(wordDef);
+
       setWord(wordDef);
     }
 
@@ -44,15 +45,13 @@ function App() {
     }
   }, [state]);
 
-  // useEffect(() => {
-  //   dispatch({ type: "BOOB" });
-  // }, [state]);
   console.log(state.rightAns);
+
   return (
     <div>
       <Display />
       <UserInput />
-      <WordDefinition word={word} />
+      {!state.isPlaying && <WordDefinition word={word} />}
       <WrongLetters />
     </div>
   );

@@ -3,7 +3,7 @@ import { WordState } from "./Context";
 import "./Display.css";
 
 const Display = () => {
-  const { state, dispatch } = WordState();
+  const { state } = WordState();
   return (
     <div className="display-container">
       {state.entered.map((obj) => (
@@ -17,7 +17,11 @@ const Display = () => {
             } else {
               wordColor = "red";
             }
-            return <h1 className={wordColor}>{letter}</h1>;
+            return (
+              <h1 className="letter" className={wordColor}>
+                {letter}
+              </h1>
+            );
           })}
         </div>
       ))}

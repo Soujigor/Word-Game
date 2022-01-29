@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { WordState } from "./Context";
 
 const UserInput = () => {
   const { state, dispatch } = WordState();
   const [input, setInput] = useState("");
+  const [buttonIsDisabled, setButtonIsDisabled] = useState(true);
   const inputChangeHandler = (event) => {
     setInput(event.target.value);
   };
@@ -15,10 +16,18 @@ const UserInput = () => {
     console.log(state.entered);
   };
 
+  useEffect(() => {
+    if (input.length === 5) {
+      setButtonIsDisabled(false);
+    } else {
+      setButtonIsDisabled(true);
+    }
+  }, [input]);
+
   return (
     <form onSubmit={submitFormHandler}>
       <input maxLength={5} value={input} onChange={inputChangeHandler}></input>
-      <button>Test</button>
+      <button disabled={buttonIsDisabled}>Test</button>
     </form>
   );
 };

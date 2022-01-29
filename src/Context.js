@@ -5,7 +5,7 @@ const Word = createContext();
 
 const Context = ({ children }) => {
   const [state, dispatch] = useReducer(wordReducer, {
-    display: [],
+    isPlaying: true,
     entered: [],
     rightAns: [],
     wrongLetters: [],
