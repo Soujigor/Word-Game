@@ -3,9 +3,10 @@ import { WordState } from "./Context";
 import "./WordDefinition.css";
 
 const WordDefinition = (props) => {
-  const { dispatch } = WordState();
+  const { state, dispatch } = WordState();
   return (
     <div>
+      <h1>{state.rightAns.join("")}</h1>
       {props.word.map((wordDef) => (
         <div>
           <h1>{wordDef.fl}</h1>
