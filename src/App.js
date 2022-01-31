@@ -5,11 +5,11 @@ import UserInput from "./UserInput";
 import { WordState } from "./Context";
 import WrongLetters from "./WrongLetters";
 import WordDefinition from "./WordDefinition";
-import { WORDS } from "./Constant";
+import { WORDS, API_KEY } from "./Constant";
 
 function App() {
   const { state, dispatch } = WordState();
-  const [word, setWord] = useState([]);
+  const [wordDef, setWordDef] = useState([]);
 
   const randomWord = WORDS[Math.floor(Math.random() * (2315 + 1))];
 
@@ -17,28 +17,40 @@ function App() {
     dispatch({ type: "LOADING", value: randomWord.split("") });
   }, []);
 
+  // useEffect(() => {
+  //   async function fetchDefinition(word) {
+  //     const response = await fetch(
+  //       `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`
+  //     );
+  //     const data = await response.json();
+  //     console.log(data);
+  //     const wordDef = await data.map((word) => {
+  //       return {
+  //         name: word.word,
+  //         meaning: word.meanings[0].definitions[0]?.definition,
+  //         example: word.meanings[0].definitions[0]?.example,
+  //         synonyms: true,
+  //       };
+  //     });
+
+  //     setWord(wordDef);
+  //   }
+
+  //   if (state.rightAns.length !== 0) {
+  //     fetchDefinition(state.rightAns.join(""));
+  //   }
+  // }, [state]);
+
   useEffect(() => {
-    async function fetchDefinition(word) {
+    async function fetchDef(word) {
       const response = await fetch(
-        `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`
+        `https://www.dictionaryapi.com/api/v3/references/thesaurus/json/${word}?key=${API_KEY}`
       );
       const data = await response.json();
       console.log(data);
-      const wordDef = await data.map((word) => {
-        return {
-          name: word.word,
-          meaning: word.meanings[0].definitions[0]?.definition,
-          example: word.meanings[0].definitions[0]?.example,
-          synonyms: true,
-        };
-      });
-
-      setWord(wordDef);
+      setWordDef(data);
     }
-
-    if (state.rightAns.length !== 0) {
-      fetchDefinition(state.rightAns.join(""));
-    }
+    fetchDef(state.rightAns.join(""));
   }, [state]);
 
   console.log(state.rightAns);
@@ -47,7 +59,7 @@ function App() {
     <div>
       <Display />
       <UserInput />
-      {!state.isPlaying && <WordDefinition word={word} />}
+      {!state.isPlaying && <WordDefinition word={wordDef} />}
       <WrongLetters />
     </div>
   );

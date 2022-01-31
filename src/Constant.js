@@ -2315,3 +2315,5 @@ export const WORDS = [
   "rural",
   "shave",
 ];
+
+export const API_KEY = "dcc78ee7-fb89-43d9-b8f8-1d76a8693429";

@@ -23,7 +23,7 @@ export const wordReducer = (state, action) => {
 
   if (action.type === "NEXT") {
     return {
-      display: [],
+      isPlaying: true,
       entered: [],
       rightAns: WORDS[Math.floor(Math.random() * (2315 + 1))].split(""),
       wrongLetters: [],
