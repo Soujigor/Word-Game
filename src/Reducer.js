@@ -10,11 +10,7 @@ export const wordReducer = (state, action) => {
       entered: [...state.entered, { letters: action.value }],
       wrongLetters: [...state.wrongLetters, ...newWrongLetters],
       isPlaying:
-        state.rightAns.length > 0
-          ? !state.rightAns.every(
-              (value, index) => value === action.value[index]
-            )
-          : true,
+        state.rightAns.join("") === action.value.join("") ? false : true,
     };
   }
   if (action.type === "LOADING") {

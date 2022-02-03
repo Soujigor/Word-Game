@@ -17,30 +17,6 @@ function App() {
     dispatch({ type: "LOADING", value: randomWord.split("") });
   }, []);
 
-  // useEffect(() => {
-  //   async function fetchDefinition(word) {
-  //     const response = await fetch(
-  //       `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`
-  //     );
-  //     const data = await response.json();
-  //     console.log(data);
-  //     const wordDef = await data.map((word) => {
-  //       return {
-  //         name: word.word,
-  //         meaning: word.meanings[0].definitions[0]?.definition,
-  //         example: word.meanings[0].definitions[0]?.example,
-  //         synonyms: true,
-  //       };
-  //     });
-
-  //     setWord(wordDef);
-  //   }
-
-  //   if (state.rightAns.length !== 0) {
-  //     fetchDefinition(state.rightAns.join(""));
-  //   }
-  // }, [state]);
-
   useEffect(() => {
     async function fetchDef(word) {
       const response = await fetch(

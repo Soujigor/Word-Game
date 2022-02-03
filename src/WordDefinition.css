@@ -4,3 +4,7 @@
 .synonyms h4 {
   padding: 4px;
 }
+
+.word-def-container {
+  width: 400px;
+}
