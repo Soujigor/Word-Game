@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { WordState } from "./Context";
+import { FormControl, Input, Button } from "@chakra-ui/react";
 
 const UserInput = () => {
   const { state, dispatch } = WordState();
@@ -25,10 +26,16 @@ const UserInput = () => {
   }, [input]);
 
   return (
-    <form onSubmit={submitFormHandler}>
-      <input maxLength={5} value={input} onChange={inputChangeHandler}></input>
-      <button disabled={buttonIsDisabled}>Test</button>
-    </form>
+    <FormControl>
+      <Input maxLength={5} value={input} onChange={inputChangeHandler}></Input>
+      <Button
+        bg="#124143"
+        onClick={submitFormHandler}
+        disabled={buttonIsDisabled}
+      >
+        Test
+      </Button>
+    </FormControl>
   );
 };
 
