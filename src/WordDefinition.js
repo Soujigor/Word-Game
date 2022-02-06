@@ -34,7 +34,6 @@ const WordDefinition = (props) => {
           </div>
         </div>
       ))}
-      <button onClick={() => dispatch({ type: "NEXT" })}>Next</button>
     </div>
   );
 };

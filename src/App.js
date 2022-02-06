@@ -9,11 +9,26 @@ import { WordState } from "./Context";
 import { WORDS, API_KEY } from "./Constant";
 
 import { useState, useEffect } from "react";
-import { Box, Center, Grid, GridItem } from "@chakra-ui/react";
+import {
+  Box,
+  Center,
+  Grid,
+  GridItem,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  Button,
+  useDisclosure,
+} from "@chakra-ui/react";
 
 function App() {
   const { state, dispatch } = WordState();
   const [wordDef, setWordDef] = useState([]);
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const randomWord = WORDS[Math.floor(Math.random() * (2315 + 1))];
 
@@ -35,23 +50,22 @@ function App() {
 
   console.log(state.rightAns);
 
+  useEffect(() => {
+    if (!state.isPlaying) {
+      onOpen();
+    }
+  }, [state]);
+
+  const nextWordHandler = () => {
+    dispatch({ type: "NEXT" });
+    onClose();
+  };
+
   return (
     <Box
       minH="calc(100vh - 100px)"
       bgGradient="linear(to-r, #5ac994, #c0f7b7, #124143)"
     >
-      {/* <Grid templateColumns="1fr, 5fr, 1fr" gap={4}>
-        <GridItem area="1">
-          <Header />
-        </GridItem>
-        <GridItem>
-          <Display />
-        </GridItem>
-        <UserInput />
-        {!state.isPlaying && <WordDefinition word={wordDef} />}
-        <WrongLetters />
-      </Grid> */}
-
       <Grid
         templateColumns="1fr 3fr 1fr"
         templateRows="75px 550px 100px"
@@ -77,6 +91,22 @@ function App() {
           <WrongLetters />
         </GridItem>
       </Grid>
+      <Modal closeOnOverlayClick={false} isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Definitions</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <WordDefinition word={wordDef} />
+          </ModalBody>
+
+          <ModalFooter>
+            <Button colorScheme="blue" mr={3} onClick={nextWordHandler}>
+              Next
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
     </Box>
   );
 }
