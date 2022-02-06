@@ -91,9 +91,14 @@ function App() {
           <WrongLetters />
         </GridItem>
       </Grid>
-      <Modal closeOnOverlayClick={false} isOpen={isOpen} onClose={onClose}>
+      <Modal
+        closeOnOverlayClick={false}
+        isOpen={isOpen}
+        onClose={onClose}
+        size="2xl"
+      >
         <ModalOverlay />
-        <ModalContent>
+        <ModalContent bg="#141b29" color="#c0f7b7">
           <ModalHeader>Definitions</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
