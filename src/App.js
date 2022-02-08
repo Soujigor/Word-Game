@@ -62,10 +62,7 @@ function App() {
   };
 
   return (
-    <Box
-      minH="calc(100vh - 100px)"
-      bgGradient="linear(to-r, #5ac994, #c0f7b7, #124143)"
-    >
+    <Box minH="calc(100vh - 100px)" bgGradient="linear(to-r, #5ac994, #124143)">
       <Grid
         templateColumns="1fr 3fr 1fr"
         templateRows="75px 550px 100px"
